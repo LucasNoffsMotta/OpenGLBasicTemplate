@@ -7,6 +7,9 @@
 #include<fstream>
 #include<sstream>
 #include<iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class Shader
 {
@@ -23,6 +26,7 @@ public:
 	void SetUniformInt(const char* uniformName, GLint i);
 	void SetUniformFloat(const char* uniformName, GLfloat f);
 	void SetUniform3f(const char* uniformName, GLfloat x, GLfloat y, GLfloat z);
+	void SetUniformMatrix4fv(const char* uniformName, glm::mat4 mat);
 };
 
 #endif
