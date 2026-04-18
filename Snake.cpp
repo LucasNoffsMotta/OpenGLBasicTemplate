@@ -8,6 +8,7 @@ Snake::Snake(GLfloat* _square, GLsizeiptr _size)
 	float bodySize = 3;
 	SnakeHeadPositon = glm::vec3(0.0f, -0.5f, 0.f);
 	ConstructBody(glm::vec3(0.05f, 0.f, 0.f), bodySize);
+	pointerBody.front()->SetColor(glm::vec3(0.f, 1.f, 0.f));
 	invalidInputKey = GetInvalidInputKey();
 }
 
@@ -27,6 +28,7 @@ void Snake::Draw()
 
 	for (auto& segment : pointerBody)
 	{
+		segment->ColorMultiplier = pointerBody.size();
 		segment->Update(scale);
 	}
 }
@@ -85,7 +87,8 @@ int Snake::GetInvalidInputKey()
 
 void Snake::RearrangeBody(glm::vec3 value)
 {
-	glm::vec3 newHeadPos = pointerBody.front()->GetTranslation();;
+	pointerBody.front()->SetColor(glm::vec3(0.f, 1.f, 0.f));
+	glm::vec3 newHeadPos = pointerBody.front()->GetTranslation();
 	newHeadPos += value;
 	
 	for (int i = 0; i < pointerBody.size(); i++)
@@ -99,6 +102,7 @@ void Snake::RearrangeBody(glm::vec3 value)
 	auto back = pointerBody.back();
 	pointerBody.pop_back();
 	pointerBody.push_front(back);
+	back->SetColor(glm::vec3(0.0f, 0.5f, 0.0f));
 }
 
 void Snake::MoveSnake(GLfloat& deltaTime)
@@ -149,6 +153,7 @@ void Snake::ConstructBody(glm::vec3 offset, int bodySize)
 		Object2D segment = Object2D(vertexArray, verticesSize);
 		segment.ID = i;
 		segment.SetTranslation(SnakeHeadPositon);
+		segment.SetColor(glm::vec3(1.0f, 0.0f, 0.0f));
 		pointerBody.push_back(std::make_shared<Object2D>(segment));
 		SnakeHeadPositon += offset;
 	}

@@ -115,6 +115,12 @@ void Shader::SetUniform3f(const char* uniformName, GLfloat x, GLfloat y, GLfloat
 	glUniform3f(uniformLocation, x, y, 0.0f);
 }
 
+void Shader::SetUniform3fv(const char* uniformName, glm::vec3 vec)
+{
+	int uniformLocation = glGetUniformLocation(Id, uniformName);
+	glUniform3fv(uniformLocation, 1, glm::value_ptr(vec));
+}
+
 void Shader::SetUniformFloat(const char* uniformName, GLfloat f)
 {
 	int uniformLocation = glGetUniformLocation(Id, uniformName);

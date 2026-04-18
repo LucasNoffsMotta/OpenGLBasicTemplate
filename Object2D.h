@@ -30,9 +30,10 @@ struct RenderShit
 class Object2D
 {
 private:
-	glm::vec3  Tranlation;
+	glm::vec3  Translation;
 	glm::vec3  Rotation;
 	glm::vec3  Scale;
+	glm::vec3  Color;
 
 
 public:
@@ -40,6 +41,9 @@ public:
 	RenderShit _renderShit;
 	void Update(glm::vec3 scale);
 	int ID = 0;
+	float ColorMultiplier = 1.f;
+
+	void SetColor(glm::vec3 normalizedColor);
 
 	void SetTranslation(glm::vec3& translation);
 	glm::vec3 GetTranslation();

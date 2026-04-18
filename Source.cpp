@@ -25,22 +25,22 @@ void processInput(GLFWwindow* window);
 
 float snakeVertices[] = {
     // positions          // colors          
-      0.5f,  0.5f, 0.0f,   0.0f, 1.0f, 0.0f,  
-      0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f, 
-     -0.5f,  0.5f, 0.0f,   0.0f, 1.0f, 0.0f,  
-      0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,  
-     -0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,
-     -0.5f,  0.5f, 0.0f,   0.0f, 1.0f, 0.0f
+      0.5f,  0.5f, 0.0f,   0.0f, 0.0f, 0.0f,  
+      0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 0.0f, 
+     -0.5f,  0.5f, 0.0f,   0.0f, 0.0f, 0.0f,  
+      0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 0.0f,  
+     -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 0.0f,
+     -0.5f,  0.5f, 0.0f,   0.0f, 0.0f, 0.0f
 };
 
 float appleVertices[] = {
     // positions          // colors          
-      0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,
-      0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,
-     -0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,
-      0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,
-     -0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f,
-     -0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f
+      0.5f,  0.5f, 0.0f,   0.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 0.0f,
+     -0.5f,  0.5f, 0.0f,   0.0f, 0.0f, 0.0f,
+      0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 0.0f,
+     -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 0.0f,
+     -0.5f,  0.5f, 0.0f,   0.0f, 0.0f, 0.0f
 };
 
 
@@ -86,6 +86,7 @@ int main()
 
     Snake snake = Snake(snakeVertices, sizeof(snakeVertices));
     Object2D apple = Object2D(appleVertices, sizeof(appleVertices));
+    apple.SetColor(glm::vec3(1.0f, 0.f, 0.f));
     GameManager gm = GameManager();
 
     glm::vec3 applePos = glm::vec3(-0.3f, 0.1f, 0.f);

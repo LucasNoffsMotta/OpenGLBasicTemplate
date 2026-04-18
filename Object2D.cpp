@@ -15,14 +15,19 @@ void Object2D::Update(glm::vec3 scale)
     _renderShit.vao.Unbind();
 }
 
+void Object2D::SetColor(glm::vec3 normalizedColor)
+{
+    Color = normalizedColor;
+}
+
 void Object2D::SetTranslation(glm::vec3& translation)
 {
-    Tranlation = translation;
+    Translation = translation;
 }
 
 glm::vec3 Object2D::GetTranslation()
 {
-    return Tranlation;
+    return Translation;
 }
 
 glm::vec3 Object2D::GetRotation()
@@ -48,10 +53,12 @@ void Object2D::SetScale(glm::vec3 scale)
 void Object2D::CalculateMatrixPosition(glm::vec3 scale)
 {
     glm::mat4 model = glm::mat4(1.0f);
-    model = glm::translate(model, Tranlation);
+    model = glm::translate(model, Translation);
     model = glm::rotate(model, 0.f, glm::vec3(Rotation.x, Rotation.y, Rotation.z));
     model = glm::scale(model, scale);
 
     _renderShit.shader.Activate();
+    _renderShit.shader.SetUniform3fv("color", Color);
     _renderShit.shader.SetUniformMatrix4fv("model", model);
+    _renderShit.shader.SetUniformFloat("size", ColorMultiplier);
 }
